@@ -1,0 +1,41 @@
+{
+  "name": "mirhan-altyapi-bot",
+  "version": "1.0.0",
+  "description": "Bu altyapı Discord.js v11 ile yapıldı. v12'ye göre daha basit olan v11 üzerinde botlarınızı bu altyapıyla yapmak çok daha basit.",
+  "main": "app.js",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "discord.js": "^11.6.4",
+    "fs": "^0.0.1-security",
+    "humanize": "0.0.9",
+    "path": "^0.12.7",
+    "say": "^0.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrMirhan/discord-altyapi-bot.git"
+  },
+  "keywords": [
+    "discord",
+    "altyapı",
+    "discord",
+    "bot",
+    "discord",
+    "altyapı",
+    "discord",
+    "altyapı",
+    "bot",
+    "bot",
+    "altyapı"
+  ],
+  "author": "Mirhan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrMirhan/discord-altyapi-bot/issues"
+  },
+  "homepage": "https://github.com/MrMirhan/discord-altyapi-bot#readme"
+}
