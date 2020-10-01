@@ -85,31 +85,25 @@ client.on("message", async (message) => {
       if(err) throw err
     })
     if(parseInt(command.permLvl) > 0) return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **0**`)
-  }
-  if(parseInt(kisi.level) < parseInt(command.permLvl)){
-    let roller = message.member._roles
-    let bulunanlar = [];
-    Object.keys(levels).forEach(function(k){
-      if(levels[k].rol == 'evet'){
-        if(roller.some(x=> x == k)) {
-          bulunanlar.push(levels[k].level)
+  } else {
+    if(parseInt(kisi.level) < parseInt(command.permLvl)){
+      let roller = message.member._roles
+      let bulunanlar = [];
+      Object.keys(levels).forEach(function(k){
+        if(levels[k].rol == 'evet'){
+          if(roller.some(x=> x == k)) {
+            bulunanlar.push(levels[k].level)
+          }
         }
+      });
+      console.log(bulunanlar.length)
+      if(bulunanlar.length > 0){
+        var max = Math.max(bulunanlar);
+        if(max < parseInt(command.permLvl)) return message.reply(`!Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
+      } else {
+        return message.reply(`?Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
       }
-    });
-    console.log(bulunanlar.length)
-    if(bulunanlar.length > 0){
-      var max = Math.max(bulunanlar);
-      if(max < parseInt(command.permLvl)) return message.reply(`!Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
-    } else {
-      return message.reply(`?Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
     }
-  }
-
-  try {
-    command.execute(message, client, args);
-  } catch (error) {
-    console.error(error);
-    message.reply("Komutu çalıştırırken bir hata meydana geldi.").catch(console.error);
   }
 });
 
