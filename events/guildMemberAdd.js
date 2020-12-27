@@ -1,16 +1,9 @@
 const chalk = require('chalk');
+const fs = require('fs');
 const human = require("humanize");
-module.exports = (client, member) => {
-    if(levels[member.id]) return;
-    levels [member.id] = {
-        isim: `${member.user.username}`,
-        rol: "hayır",
-        level: 0
-    }
+const levels = JSON.parse(fs.readFileSync("./levels.json"));
 
-    let data = JSON.stringify(levels, null, 2)
-
-    fs.writeFileSync('./levels.json', data, function(err){
-        if(err) throw err
-    })
-}
+module.exports = member => {
+    console.log(member)
+    
+};
