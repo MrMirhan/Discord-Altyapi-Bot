@@ -32,7 +32,7 @@ Terminali botunuzun bulunduğu klasörde açın ve
 Artık v11 kurulu olacak.
 
 # Oynuyor değiştirme
-Botunuzun oynuyor kısmını değiştirmek için öncelikle `/events/ready.js` dosyasını açın. `client.user.setActivity(`${PREFIX}yardım`);` bölümünde `${PREFIX}yardım` kısmını değiştirdiğinizde oynuyor kısmı değişecek.
+Botunuzun oynuyor kısmını değiştirmek için öncelikle `/events/ready.js` dosyasını açın. `client.user.setActivity(\`${PREFIX}yardım\`);` bölümünde `${PREFIX}yardım` kısmını değiştirdiğinizde oynuyor kısmı değişecek.
 
 # Botu başlatmak
 Botunuzu `node app.js` yazarak başlatabilirsiniz.
