@@ -1,6 +1,8 @@
 # discord-altyapi-bot
 Bu altyapı Discord.js v11.6.4 ile yapıldı. v12'ye göre daha basit olan v11 üzerinde botlarınızı bu altyapıyla yapmak çok daha basit.
+
 Botun yapımcısı benim. Discord adresim `Mirhan#9659`
+
 Lütfen kendiniz yapmışsınız gibi paylaşmayınız. Emeğe az da olsa saygı gösteriniz.
 
 Bot tamamen boştur, tek fonksiyonu yetki sistemidir. Altyapıya göre kendi komutlarınızı oluşturabilirsiniz.
