@@ -60,29 +60,47 @@ module.exports = message => {
         fs.writeFileSync('./levels.json', data, function(err){
             if(err) throw err
         })
-        if(parseInt(command.permLvl) > 0) return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **0**`)
-        command.execute(message, client, args);
-    } else {
-        if(parseInt(kisi.level) < parseInt(command.permLvl)){
-        let roller = message.member._roles
-        let bulunanlar = [];
-        Object.keys(levels).forEach(function(k){
-            if(levels[k].rol == 'evet'){
-                if(roller.some(x=> x == k)) {
-                    bulunanlar.push(levels[k].level)
-                }
-            }
-        });
-        if(bulunanlar.length > 0){
-            var max = Math.max(bulunanlar);
-            if(parseInt(max) < parseInt(command.permLvl)) return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
-            command.execute(message, message.client, args);
+        if(parseInt(command.permLvl) == 0){
+            return command.execute(message, client, args);
         } else {
-            return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
+            if(message.member.permissions.has("ADMINISTRATOR")){
+                return command.execute(message, message.client, args);
+            } else {
+                if(parseInt(command.permLvl) > 0) return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **0**`)
+                return command.execute(message, client, args);
+            }
         }
-    }
         
-    command.execute(message, message.client, args);
-
+    } else {
+        if(parseInt(command.permLvl) == 0){
+            return command.execute(message, client, args);
+        } else {
+            if(parseInt(kisi.level) < parseInt(command.permLvl)){
+                let roller = message.member._roles
+                let bulunanlar = [];
+                    Object.keys(levels).forEach(function(k){
+                        if(levels[k].rol == 'evet'){
+                            if(roller.some(x=> x == k)) {
+                                bulunanlar.push(levels[k].level)
+                            }
+                        }
+                    });
+                    if(bulunanlar.length > 0){
+                        var max = Math.max(bulunanlar);
+                        if(message.member.permissions.has("ADMINISTRATOR")){
+                            return command.execute(message, message.client, args);
+                        } else {
+                            if(parseInt(max) < parseInt(command.permLvl)) return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
+                            return command.execute(message, message.client, args);
+                        }
+                    } else {
+                        if(message.member.permissions.has("ADMINISTRATOR")){
+                            return command.execute(message, message.client, args);
+                        } else {
+                            return message.reply(`Bu komutu kullanabilmen için yetki seviyenin **${parseInt(command.permLvl)}** olması gerekiyor. Senin yetki seviyen: **${parseInt(levels[message.author.id].level)}**`)
+                        }
+                    }
+                }
+        }
     }
 };

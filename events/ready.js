@@ -8,8 +8,17 @@ function amPm() {
     return "PM";
   } else return "AM";
 }
-module.exports = client => {
+module.exports = async client => {
+
+  let members = 0;
+
+  await client.guilds.forEach( async guild => {
+    members += guild.members.size;
+  })
+
   console.log(chalk.bgGreen.black(`${client.user.username} ismiyle giriş yapıldı!`));
-  client.user.setStatus('online');
+  console.log("Görülen sunucu sayısı:", chalk.bgGreen.black(`${client.guilds.size}`));
+  console.log("Görülen kullanıcı sayısı:", chalk.bgGreen.black(`${members}`));
+  client.user.setStatus('dnd');
   client.user.setActivity(`${PREFIX}yardım`);
 }
